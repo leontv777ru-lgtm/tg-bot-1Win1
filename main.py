@@ -27,18 +27,14 @@ async def main():
     await bot.delete_webhook(drop_pending_updates=True)
 
     await dp.start_polling(bot)
-    POSTBACK_CHANNEL = -1003712007488
+    
+POSTBACK_CHANNEL = -1003712007488
 
 @dp.channel_post()
 async def postback_handler(message):
     if message.chat.id == POSTBACK_CHANNEL:
         try:
-            user_id = int(message.text.replace("POSTBACK:", ""))
+            user_id = int(message.text)
             await DataBase.update_verifed(user_id)
         except:
             pass
-
-
-if __name__ == '__main__':
-    asyncio.run(main())
-
