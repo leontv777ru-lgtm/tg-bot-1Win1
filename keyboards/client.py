@@ -40,7 +40,7 @@ class ClientKeyboard:
         ikb.button(text=languages[lang]["choose_lang"], callback_data="get_lang")
         ikb.button(text="Help🆘", url=SUPP)
 
-        if user_info[0] != "verifed":
+        if user_info[0] != "verified":
             ikb.button(text=languages[lang]["get_signal"], callback_data="register")
         else:
             ikb.button(text=languages[lang]["get_signal"], web_app=types.WebAppInfo(url="https://entypublic.github.io/dogmain/"))
@@ -71,3 +71,4 @@ class ClientKeyboard:
         ikb.button(text=languages[lang]["back"], callback_data="back")
         ikb.adjust(1)
         return ikb.as_markup()
+
