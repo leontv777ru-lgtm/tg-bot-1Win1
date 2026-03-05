@@ -1,14 +1,13 @@
 import asyncio
 import logging
 
-from aiogram import Dispatcher, Bot
+from aiogram import Bot, Dispatcher
 from aiogram.types import Message
 
 from config import BOT_TOKEN
 from handlers.client import router as client_router
 from handlers.admin import router as admin_router
 from database.db import DataBase
-
 
 logger = logging.getLogger(__name__)
 
@@ -21,8 +20,8 @@ async def main():
 
     logger.info("Starting bot...")
 
+    bot = Bot(token=BOT_TOKEN)
     dp = Dispatcher()
-    bot = Bot(BOT_TOKEN)
 
     dp.include_routers(client_router, admin_router)
 
