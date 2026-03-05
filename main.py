@@ -23,11 +23,6 @@ async def main():
     bot = Bot(BOT_TOKEN)
     dp.include_routers(client_router, admin_router)
 
-    dp.startup.register(DataBase.on_startup)
-    await bot.delete_webhook(drop_pending_updates=True)
-
-    await dp.start_polling(bot)
-    
 POSTBACK_CHANNEL = -1003712007488
 
 @dp.channel_post()
@@ -38,3 +33,8 @@ async def postback_handler(message):
             await DataBase.update_verifed(user_id)
         except:
             pass
+
+dp.startup.register(DataBase.on_startup)
+await bot.delete_webhook(drop_pending_updates=True)
+
+await dp.start_polling(bot)
